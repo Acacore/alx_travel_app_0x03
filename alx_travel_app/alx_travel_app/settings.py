@@ -98,15 +98,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     },
 
-    'supabase_db': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'Jw8lc2oGcBiSiNNl',
-        'HOST': 'db.dpmqfhwodobmurtpwrpc.supabase.co',
-        'PORT': '5432'
-    }
+    # 'supabase_db': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Jw8lc2oGcBiSiNNl',
+    #     'HOST': 'db.dpmqfhwodobmurtpwrpc.supabase.co',
+    #     'PORT': '5432'
+    # }
 }
+
 
 
 
@@ -168,3 +169,6 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

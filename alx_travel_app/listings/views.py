@@ -5,6 +5,7 @@ from .serializers import *
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import filters
+from .tasks import *
 
 from django.contrib.auth import get_user_model
 
@@ -76,7 +77,9 @@ class BookingViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         # Automatically set the user field to the authenticated
-        serializer.save(guest=self.request.user)
+        booking=serializer.save(guest=self.request.user)
+        user_email = booking.guest.email
+        send_booking_email_task.delay(user_email,booking.id)
 
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment.objects.all()
