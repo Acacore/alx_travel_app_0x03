@@ -5,6 +5,12 @@ drf-yasg
 celery
 django-celery-beat
 redis
-mysqlclient
 python-decouple
 faker
+mysqlclient
+rabbitmq
+gunicorn
+python-dotenv
+dj-database-url
+whitenoise
+
