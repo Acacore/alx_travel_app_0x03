@@ -2,6 +2,7 @@ services:
   - type: web
     name: alx_travel_app
     env: python
+    rootDir: alx_travel_app
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
     startCommand: "gunicorn alx_travel_app.wsgi:application"
     plan: free
