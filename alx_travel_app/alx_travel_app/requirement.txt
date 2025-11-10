@@ -13,4 +13,5 @@ gunicorn
 python-dotenv
 dj-database-url
 whitenoise
+pika
 
