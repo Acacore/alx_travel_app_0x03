@@ -176,6 +176,7 @@ CELERY_TIMEZONE = 'UTC'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+RABBITMQ_URL = config('RABBITMQ_URL')
 
 
 

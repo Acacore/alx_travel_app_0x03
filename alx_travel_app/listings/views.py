@@ -6,7 +6,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import filters
 from .tasks import *
-
+from django.http import HttpResponse
+from .rabbitmq import get_rabbitmq_channel
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -94,3 +95,22 @@ class PaymentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically set the user field to the authenticated
         serializer.save(user=self.request.user)
+
+
+
+# RabbitMQ settings
+def send_test_message(request):
+    channel, connection = get_rabbitmq_channel()
+    
+    # Declare a queue (idempotent)
+    channel.queue_declare(queue='test_queue')
+    
+    # Send a message
+    channel.basic_publish(
+        exchange='',
+        routing_key='test_queue',
+        body='Hello from Django!'
+    )
+
+    connection.close()
+    return HttpResponse("Message sent to RabbitMQ!")
