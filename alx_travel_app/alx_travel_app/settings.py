@@ -167,7 +167,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:9000",
 ]
 
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_BROKER_URL = os.environ.get("RABBITMQ_URL")
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
